@@ -29,11 +29,11 @@ Notice we've given it a class of "track-click".  We need to call the plugin in o
 
 	$('.track-click').gaTrackEventUnobtrusive({
 
-	useEvent:true,
+		useEvent:true,
 
-	useLabel:true,
+		useLabel:true,
 
-	event: click
+		event: click
 
 	});
 
@@ -46,15 +46,15 @@ Sometimes for some reason you might not want to use data attributes directly on 
 	//Set up for downloads
 	$('.track-download-pdf').gaTrackEvent({
 
-	category: 'Download',
+		category: 'Download',
 
-	action: 'PDF',
+		action: 'PDF',
 
-	labelAttribute: "href",
+		labelAttribute: "href",
 
-	useEvent: true,
+		useEvent: true,
 
-	event: 'click'
+		event: 'click'
 
 	});
 
@@ -66,43 +66,43 @@ There are many options to make the plugin a bit more flexible. Including callbac
 
 	var defaultOptions = {
 
-	//The category attribute
-	categoryAttribute: 'data-ga-category',
+		//The category attribute
+		categoryAttribute: 'data-ga-category',
 
-	//The action attribute
-	actionAttribute: 'data-ga-action',
+		//The action attribute
+		actionAttribute: 'data-ga-action',
 
-	//The label attribute (could be changed to href when tracking file downloads)
-	labelAttribute: 'data-ga-label',
+		//The label attribute (could be changed to href when tracking file downloads)
+		labelAttribute: 'data-ga-label',
 
-	//The value attribute (value must be integer)
-	valueAttribute: 'data-ga-value',
+		//The value attribute (value must be integer)
+		valueAttribute: 'data-ga-value',
 
-	//Whether to look for the label
-	useLabel: true,
+		//Whether to look for the label
+		useLabel: true,
 
-	//Whether to look for a value
-	useValue: false,
+		//Whether to look for a value
+		useValue: false,
 
-	//false = track as soon as the plugin loads, true = bind to an event
-	useEvent: false,
+		//false = track as soon as the plugin loads, true = bind to an event
+		useEvent: false,
 
-	//The event to bind to if useEvent is true
-	event: 'click',
+		//The event to bind to if useEvent is true
+		event: 'click',
 
-	//A method to call to check whether or not we should call the tracking when the event is clicked
-	valid: function (elem) { return true; },
+		//A method to call to check whether or not we should call the tracking when the event is clicked
+		valid: function (elem) { return true; },
 
-	//Tracking complete
-	complete: function (elem) { },
+		//Tracking complete
+		complete: function (elem) { },
 
-	//When using an event, delay the browser to allow the event to fire
-	delay: 0,
+		//When using an event, delay the browser to allow the event to fire
+		delay: 0,
 
-	//Category should always be set if using gaTrackEvent
-	category: 'Unspecified',
+		//Category should always be set if using gaTrackEvent
+		category: 'Unspecified',
 
-	//Action should always be set if using gaTrackEvent
-	action: 'Unspecified'
-
+		//Action should always be set if using gaTrackEvent
+		action: 'Unspecified'
+		
 	});
