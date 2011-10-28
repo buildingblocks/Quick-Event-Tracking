@@ -3,6 +3,10 @@
 
 It's a jQuery plugin that tries to standardise and simplify the way event tracking is implemented within a project. It makes use of HTML5 data attributes and jQuery to try and minimise the effort and cross cutting concerns that tracking often puts into a project.
 
+It was created by Robert Stevenson-Leggett at <a href="http://www.building-blocks.com">Building Blocks</a> and is licenced under the MIT licence.
+
+#Usage
+
 There are 3 ways to use the plugin. Not all of these will fit every situation.
 
 ##Method 1 - Simple Unobtrusive Tracking
