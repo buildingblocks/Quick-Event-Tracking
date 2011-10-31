@@ -22,7 +22,7 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.4
+ Version: 0.5
 
  Handles event tracking through the use of data attributes
 
@@ -31,9 +31,6 @@
 
     //Wrap the track event function
     var trackEvent = function (category, action, label, value) {
-        if (console !== undefined && console.log !== undefined) {
-            console.log('GA tracking event: category=' + category + ', action=' + action + ', label=' + label + ', value=' + value);
-        }
         _gaq.push(['_trackEvent', category, action, label, value]);
     };
 
