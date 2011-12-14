@@ -22,7 +22,7 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.5
+ Version: 0.6
 
  Handles event tracking through the use of data attributes
 
@@ -52,16 +52,14 @@
         //The event to bind to if useEvent is true
         event: 'click',
         //A method to call to check whether or not we should call the tracking when the event is clicked
-        valid: function (elem) { return true; },
+        valid: function (elem, e) { return true; },
         //Tracking complete
-        complete: function (elem) { },
-        //When using an event, delay the browser to allow the event to fire
-        delay: 0,
+        complete: function (elem, e) { },
         //Category should always be set if using gaTrackEvent
         category: 'Unspecified',
         //Action should always be set if using gaTrackEvent
         action: 'Unspecified'
-    });
+    };
 
     //
     // gaTrackEvent adds unobtrusive tracking attributes itself
@@ -94,7 +92,9 @@
         });
     };
 
-    //Create a plugin
+    //Create the plugin
+	// gaTrackEventUnobtrusive expects you to add the data attributes either via server side code
+	// or direct into the mark up.
     $.fn.gaTrackEventUnobtrusive = function (options) {
 
         //Merge options
@@ -128,11 +128,11 @@
             if (options.useEvent == true) {
 
                 //This is what happens when you actually click a button
-                var constructedFunction = function () {
+                var constructedFunction = function (e) {
                     //Check the callback function
-                    if (options.valid(_this) === true) {
+                    if (options.valid(_this, e) === true) {
                         callTrackEvent();
-                        options.complete(_this);
+                        options.complete(_this, e);
                     }
                 };
 
@@ -147,6 +147,10 @@
     };
 
     //an alternative way to call the function.
+	// Can be used anywhere in your Javascript like so:
+	// $.ga.trackEvent('Category', 'Action', 'Label', 0.0);
+	// $.ga.trackEvent('Category', 'Action');
+	// $.ga.trackEvent('Category', 'Action', 'Label');
     $.extend({
         ga: {
             trackEvent: trackEvent
