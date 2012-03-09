@@ -1,4 +1,3 @@
-
 #What Google Analytics Plugin?
 
 It's a jQuery plugin that tries to standardise and simplify the way event tracking is implemented within a project. It makes use of HTML5 data attributes and jQuery to try and minimise the effort and cross cutting concerns that tracking often puts into a project.
@@ -95,13 +94,11 @@ There are many options to make the plugin a bit more flexible. Including callbac
 		event: 'click',
 
 		//A method to call to check whether or not we should call the tracking when the event is clicked
-		valid: function (elem) { return true; },
+		valid: function (elem,e) { return true; },
 
 		//Tracking complete
-		complete: function (elem) { },
+		complete: function (elem, e) { },
 
-		//When using an event, delay the browser to allow the event to fire
-		delay: 0,
 
 		//Category should always be set if using gaTrackEvent
 		category: 'Unspecified',
