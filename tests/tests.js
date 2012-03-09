@@ -4,7 +4,7 @@
 	Date Created: 18/02/2012
 */
 $(function() {
-	//Shit mocking that I just made up..
+	//Rubbish mocking that I just made up..
 	(function(window) { 
 		window.jsMock = { 
 			mock : function(fn,before,after) { 
@@ -22,6 +22,7 @@ $(function() {
 	$.ga.trackEvent = jsMock.mock($.ga.trackEvent,function() {}, function() {});
 
 	test('trackEvent can be called directly',function() { 
+		//TODO: this is only really testing the mock..
 		$.ga.trackEvent({category:'Category',action:'Blah',label:'Blah',value:'Blah'});
 		ok($('img[src*="utm.gif"]').length > 0, 'Could not find tracking pixel');
 	});

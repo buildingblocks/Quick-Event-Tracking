@@ -5,7 +5,7 @@ It's a jQuery plugin that tries to standardise and simplify the way event tracki
 It was created by Robert Stevenson-Leggett at <a href="http://www.building-blocks.com">Building Blocks</a> and is licenced under the MIT licence.
 
 #Version History
- - 0.8 - Bug fix with BREAKING CHANGE! $.ga.trackEvent has has it's signiture changes.
+ - 0.8 - Bug fix with *BREAKING CHANGE!* $.ga.trackEvent has has its signature changed.
  - 0.7 - Added support for non interactive option
  - 0.6 - Bug fixes
  - 0.5 - Add gaTrackEvent
@@ -73,47 +73,65 @@ Sometimes for some reason you might not want to use data attributes directly on 
 
 So what this will do is look for any element with the class "track-download-pdf" and add the data attributes for tracking. Notice it also uses the href of the element as the label element.
 
+## Method 4 - Calling Tracking directly
+
+This method is useful if you have existing javascript code that you want to add tracking to.
+
+This works like so:
+
+	$.ga.trackEvent({ category : 'Category', action : 'Action', label : 'Label', value: 0.1, nonInteractive: false });
+
 ##Available options
 
 There are many options to make the plugin a bit more flexible. Including callback hook functions to evaluate whether to perform tracking These are the default options, you can override any of these by passing them to the plugin.
 
-	var defaultOptions = {
-
+    var defaultOptions = {
+        
 		//The category attribute
-		categoryAttribute: 'data-ga-category',
-
+        categoryAttribute: 'data-ga-category',
+        
 		//The action attribute
-		actionAttribute: 'data-ga-action',
-
+        actionAttribute: 'data-ga-action',
+        
 		//The label attribute (could be changed to href when tracking file downloads)
-		labelAttribute: 'data-ga-label',
-
-		//The value attribute (value must be integer)
-		valueAttribute: 'data-ga-value',
-
+        labelAttribute: 'data-ga-label',
+        
+		//The value attribute (must be integer)
+        valueAttribute: 'data-ga-value',
+        
+		//An attribute to indicate whether the event is non-interactive (defaults to false)
+        noninteractiveAttribute: 'data-ga-noninteractive',
+        
 		//Whether to look for the label
-		useLabel: true,
-
+        useLabel: true,
+        
 		//Whether to look for a value
-		useValue: false,
-
+        useValue: false,
+        
 		//false = track as soon as the plugin loads, true = bind to an event
-		useEvent: false,
-
+        useEvent: false,
+        
 		//The event to bind to if useEvent is true
-		event: 'click',
-
+        event: 'click',
+        
 		//A method to call to check whether or not we should call the tracking when the event is clicked
-		valid: function (elem,e) { return true; },
-
+        valid: function (elem, e) { return true; },
+        
 		//Tracking complete
-		complete: function (elem, e) { },
-
-
+        complete: function (elem, e) { },
+        
 		//Category should always be set if using gaTrackEvent
-		category: 'Unspecified',
-
+        category: 'Unspecified',
+        
 		//Action should always be set if using gaTrackEvent
-		action: 'Unspecified'
-		
-	});
+        action: 'Unspecified',
+        
+		//Label can be specified if using gaTrackEvent and useLabel == true
+        label: 'Unspecified',
+        
+		//value can be specified if using gaTrackEvent and useValue == true
+        value: 'Unspecified',
+        
+		//non-interactive - only used if using gaTrackEvent
+        nonInteractive: false
+    };
