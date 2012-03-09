@@ -4,6 +4,16 @@ It's a jQuery plugin that tries to standardise and simplify the way event tracki
 
 It was created by Robert Stevenson-Leggett at <a href="http://www.building-blocks.com">Building Blocks</a> and is licenced under the MIT licence.
 
+#Version History
+ 0.1 - Initial version
+ 0.2 - Support for direct calling
+ 0.3 - Bug fixes
+ 0.4 - Added comments and push to github
+ 0.5 - Add gaTrackEvent
+ 0.6 - Bug fixes
+ 0.7 - Added support for non interactive option
+ 0.8 - Bug fix with BREAKING CHANGE! $.ga.trackEvent has has it's signiture changes.
+
 #Usage
 
 There are 3 ways to use the plugin. Not all of these will fit every situation.
