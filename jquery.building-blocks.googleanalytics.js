@@ -22,17 +22,44 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.6
+ Version: 0.8
 
  Handles event tracking through the use of data attributes
+
+ Version history:
+
+ 0.1 - Initial version
+ 0.2 - Support for direct calling
+ 0.3 - Bug fixes
+ 0.4 - Added comments and push to github
+ 0.5 - Add gaTrackEvent
+ 0.6 - Bug fixes
+ 0.7 - Added non interactive option
+ 0.8 - Bug fix
 
 */
 (function ($) {
 
-    //Wrap the track event function
-    var trackEvent = function (category, action, label, value) {
-        _gaq.push(['_trackEvent', category, action, label, value]);
-    };
+    // Extend the jQuery object with the ga trackEvent function. Other functions can call this method, or
+    // it can be called directly from existing JS code to add tracking
+    // Can be used anywhere in your Javascript like so:
+    // $.ga.trackEvent({ category : 'Category', action : 'Action', label : 'Label', value : 0.0});
+    // $.ga.trackEvent({ category : 'Category', action: 'Action' });
+    //
+    // This also enables unit tests to overide this function for testing purposes.
+    $.extend({
+        ga: {
+            trackEvent: function(args) {
+                var defaultArgs = {
+                    category : 'Unspecified',
+                    action: 'Unspecified',
+                    nonInteractive:false
+                };
+                args = $.extend(defaultArgs,args);
+                _gaq.push(['_trackEvent', args.category, args.action, args.label, args.value, args.nonInteractive]);
+            }
+        }
+    });
 
     var defaultOptions = {
         //The category attribute
@@ -43,6 +70,8 @@
         labelAttribute: 'data-ga-label',
         //The value attribute (must be integer)
         valueAttribute: 'data-ga-value',
+        //An attribute to indicate whether the event is non-interactive (defaults to false)
+        noninteractiveAttribute: 'data-ga-noninteractive',
         //Whether to look for the label
         useLabel: true,
         //Whether to look for a value
@@ -58,7 +87,13 @@
         //Category should always be set if using gaTrackEvent
         category: 'Unspecified',
         //Action should always be set if using gaTrackEvent
-        action: 'Unspecified'
+        action: 'Unspecified',
+        //Label can be specified if using gaTrackEvent and useLabel == true
+        label: 'Unspecified',
+        //value can be specified if using gaTrackEvent and useValue == true
+        value: 'Unspecified',
+        //non-interactive - only used if using gaTrackEvent
+        nonInteractive: false
     };
 
     //
@@ -81,11 +116,14 @@
             element.attr(options.categoryAttribute, options.category);
             element.attr(options.actionAttribute, options.action);
 
-            if (options.useLabel) {
+            if (options.useLabel == true) {
                 element.attr(options.labelAttribute, options.label);
             }
-            if (options.useValue) {
+            if (options.useValue == true) {
                 element.attr(options.valueAttribute, options.value);
+            }
+            if (options.nonInteractive == true) {
+            	element.attr(options.noninteractiveAttribute, "true");
             }
             
             element.gaTrackEventUnobtrusive(options);
@@ -112,16 +150,23 @@
                 var action = _this.attr(options.actionAttribute);
                 var label = _this.attr(options.labelAttribute);
                 var value = _this.attr(options.valueAttribute);
+                var nonInteractive = _this.attr(options.noninteractiveAttribute);
+
+                var args = {
+                    category : category,
+                    action : action,
+                    nonInteractive : nonInteractive
+                };
 
                 if (options.useLabel && options.useValue) {
-                    trackEvent(category, action, label, value);
+                   args.label = label;
+                   args.value = value;
                 }
                 else if (options.useLabel) {
-                    trackEvent(category, action, label);
+                    args.label = label;
                 }
-                else {
-                    trackEvent(category, action);
-                }
+
+                $.ga.trackEvent(args);
             };
 
             //If we want to bind to an event, do it.
@@ -145,16 +190,5 @@
             }
         });
     };
-
-    //an alternative way to call the function.
-	// Can be used anywhere in your Javascript like so:
-	// $.ga.trackEvent('Category', 'Action', 'Label', 0.0);
-	// $.ga.trackEvent('Category', 'Action');
-	// $.ga.trackEvent('Category', 'Action', 'Label');
-    $.extend({
-        ga: {
-            trackEvent: trackEvent
-        }
-    });
 
 })(jQuery);
