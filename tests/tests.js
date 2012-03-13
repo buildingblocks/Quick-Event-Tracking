@@ -21,12 +21,6 @@ $(function() {
 	//Replace trackEvent with a fake that appends the variables
 	$.ga.trackEvent = jsMock.mock($.ga.trackEvent,function() {}, function() {});
 
-	test('trackEvent can be called directly',function() { 
-		//TODO: this is only really testing the mock..
-		$.ga.trackEvent({category:'Category',action:'Blah',label:'Blah',value:'Blah'});
-		ok($('img[src*="utm.gif"]').length > 0, 'Could not find tracking pixel');
-	});
-
 	test('gaTrackEvent adds the category to an element', function() { 
 		$('#trackMeDiv').remove();
 		$('body').append('<div id="trackMeDiv"></div>');
