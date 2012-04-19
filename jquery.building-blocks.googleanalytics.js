@@ -22,7 +22,7 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.8
+ Version: 0.9
 
  Handles event tracking through the use of data attributes
 
@@ -36,6 +36,7 @@
  0.6 - Bug fixes
  0.7 - Added non interactive option
  0.8 - Bug fix
+ 0.9 - Added more tests
 
 */
 (function ($) {
@@ -73,7 +74,7 @@
         //An attribute to indicate whether the event is non-interactive (defaults to false)
         noninteractiveAttribute: 'data-ga-noninteractive',
         //Whether to look for the label
-        useLabel: true,
+        useLabel: false,
         //Whether to look for a value
         useValue: false,
         //false = track as soon as the plugin loads, true = bind to an event
@@ -116,13 +117,13 @@
             element.attr(options.categoryAttribute, options.category);
             element.attr(options.actionAttribute, options.action);
 
-            if (options.useLabel == true) {
+            if (options.useLabel === true) {
                 element.attr(options.labelAttribute, options.label);
             }
-            if (options.useValue == true) {
+            if (options.useValue === true) {
                 element.attr(options.valueAttribute, options.value);
             }
-            if (options.nonInteractive == true) {
+            if (options.nonInteractive === true) {
             	element.attr(options.noninteractiveAttribute, "true");
             }
             
@@ -150,7 +151,7 @@
                 var action = _this.attr(options.actionAttribute);
                 var label = _this.attr(options.labelAttribute);
                 var value = _this.attr(options.valueAttribute);
-                var nonInteractive = _this.attr(options.noninteractiveAttribute);
+                var nonInteractive = (_this.attr(options.noninteractiveAttribute) === 'true');
 
                 var args = {
                     category : category,
