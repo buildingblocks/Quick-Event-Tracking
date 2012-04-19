@@ -22,7 +22,7 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.9
+ Version: 0.91
 
  Handles event tracking through the use of data attributes
 
@@ -37,6 +37,7 @@
  0.7 - Added non interactive option
  0.8 - Bug fix
  0.9 - Added more tests
+ 0.91 - Bug fix
 
 */
 (function ($) {
