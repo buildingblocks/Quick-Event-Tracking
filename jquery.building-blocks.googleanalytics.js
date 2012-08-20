@@ -22,7 +22,7 @@
  THE SOFTWARE.
 
  Author: Robert Stevenson-Leggett
- Version: 0.91
+ Version: 0.92
 
  Handles event tracking through the use of data attributes
 
@@ -38,6 +38,7 @@
  0.8 - Bug fix
  0.9 - Added more tests
  0.91 - Bug fix
+ 0.92 - Bug fix for useLabel
 
 */
 (function ($) {
@@ -91,9 +92,9 @@
         //Action should always be set if using gaTrackEvent
         action: 'Unspecified',
         //Label can be specified if using gaTrackEvent and useLabel == true
-        label: 'Unspecified',
+        label: '',
         //value can be specified if using gaTrackEvent and useValue == true
-        value: 'Unspecified',
+        value: '',
         //non-interactive - only used if using gaTrackEvent
         nonInteractive: false
     };
@@ -118,10 +119,10 @@
             element.attr(options.categoryAttribute, options.category);
             element.attr(options.actionAttribute, options.action);
 
-            if (options.useLabel === true) {
+            if (options.useLabel === true && options.label !== '') {
                 element.attr(options.labelAttribute, options.label);
             }
-            if (options.useValue === true) {
+            if (options.useValue === true && options.value !== '') {
                 element.attr(options.valueAttribute, options.value);
             }
             if (options.nonInteractive === true) {
