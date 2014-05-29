@@ -112,7 +112,7 @@
     //    });
     //
     $.fn.gaTrackEvent = function (options) {
-        options = $.extend(defaultOptions, options);
+        options = $.extend({}, defaultOptions, options);
 
         return this.each(function () {
             var element = $(this);
@@ -139,7 +139,7 @@
     $.fn.gaTrackEventUnobtrusive = function (options) {
 
         //Merge options
-        options = $.extend(defaultOptions, options);
+        options = $.extend({}, defaultOptions, options);
 
         //Keep the chain going
         return this.each(function () {
