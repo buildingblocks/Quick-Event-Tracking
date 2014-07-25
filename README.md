@@ -16,7 +16,7 @@ It was created by Robert Stevenson-Leggett at <a href="http://www.building-block
 
 #Usage
 
-There are 3 ways to use the plugin. Not all of these will fit every situation.
+There are 4 ways to use the plugin. Not all of these will fit every situation.
 
 ##Method 1 - Simple Unobtrusive Tracking
 
@@ -135,3 +135,11 @@ There are many options to make the plugin a bit more flexible. Including callbac
 		//non-interactive - only used if using gaTrackEvent
         nonInteractive: false
     };
+
+
+#Installation
+
+You can install this into your project using [Bower](http://bower.io):
+```
+$ bower install quick-event-tracking --save-dev
+```

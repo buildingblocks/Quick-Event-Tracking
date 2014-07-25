@@ -1,0 +1,26 @@
+{
+  "name": "quick-event-tracking",
+  "version": "0.8.0",
+  "homepage": "https://github.com/buildingblocks/Quick-Event-Tracking",
+  "authors": [
+    "Robert Stevenson-Leggett <r.leggett@building-blocks.com>"
+  ],
+  "description": "A jQuery plugin that tries to standardise and simplify the way event tracking is implemented within a project",
+  "main": "jquery.building-blocks.googleanalytics.js",
+  "keywords": [
+    "jQuery",
+    "Google",
+    "analytics"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.1"
+  }
+}
