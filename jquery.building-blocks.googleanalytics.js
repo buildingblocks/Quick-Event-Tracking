@@ -59,7 +59,14 @@
                     nonInteractive:false
                 };
                 args = $.extend(defaultArgs,args);
-                _gaq.push(['_trackEvent', args.category, args.action, args.label, args.value, args.nonInteractive]);
+
+                if (typeof ga !== 'undefined') {
+                    ga('send', 'event', args.category, args.action, args.label, args.value, {'nonInteraction': args.nonInteractive});
+                } else if (typeof _gaq !== 'undefined') {
+                    _gaq.push(['_trackEvent', args.category, args.action, args.label, args.value, args.nonInteractive]);
+                } else {
+                    throw new ReferenceError("ga and _gaq are both undefined.");
+                }
             }
         }
     });
@@ -128,7 +135,7 @@
             if (options.nonInteractive === true) {
             	element.attr(options.noninteractiveAttribute, "true");
             }
-            
+
             element.gaTrackEventUnobtrusive(options);
         });
     };
