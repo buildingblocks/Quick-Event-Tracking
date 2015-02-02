@@ -46,7 +46,7 @@ Notice we've given it a class of "track-click".  We need to call the plugin in o
 
 		useLabel:true,
 
-		event: click
+		event: 'click'
 
 	});
 
